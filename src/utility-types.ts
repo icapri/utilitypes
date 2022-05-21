@@ -20,6 +20,11 @@ export type Class<T = any> = AbstractClass<T> | InstantiableClass<T>;
 export type ConstructorType<T = any> = new (...args: any[]) => T;
 
 /**
+ * Represents the falsy values.
+ */
+export type Falsy = "" | 0 | false | null | undefined;
+
+/**
  * Represents the keys of a given object which are of type function.
  *
  * **Example:**
@@ -214,6 +219,18 @@ export type PositiveInteger<TNumber extends number> = number extends TNumber
   : `${TNumber}` extends `-${string}` | `${string}.${string}`
   ? never
   : TNumber;
+
+/**
+ * Represents the primitive types in TypeScript (JavaScript).
+ */
+export type Primitive =
+  | bigint
+  | boolean
+  | null
+  | number
+  | string
+  | symbol
+  | undefined;
 
 /**
  * Represents the type of the given object property.
