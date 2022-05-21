@@ -1,5 +1,5 @@
 {
-  "name": "utilitypes",
+  "name": "@utilitypes",
   "version": "1.0.0",
   "description": "Supplementary TypeScript Utility-Types",
   "main": "lib/index.js",
