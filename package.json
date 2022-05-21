@@ -1,12 +1,13 @@
 {
-  "name": "utilitytypes",
+  "name": "@i-kapri/utility-types",
   "version": "1.0.0",
   "description": "Supplementary TypeScript Utility-Types",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build" : "tsc",
-    "commitAndPush": "git add -A && git commit -m \"New changes\" && git push"
+    "commitAndPush": "git add -A && git commit -m \"New changes\" && git push",
+    "publish": "npm publish --access=public"
   },
   "repository": {
     "type": "git",
