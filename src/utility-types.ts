@@ -1,7 +1,8 @@
 /**
  * Represents the type of the array items.
  */
-export type ArrayItem<TArray extends readonly unknown[]> = TArray extends readonly (infer TItem)[] ? TItem : never;
+export type ArrayItem<TArray extends readonly unknown[]> =
+  TArray extends readonly (infer TItem)[] ? TItem : never;
 
 /**
  * Represents the type of the constructor of an object.
@@ -63,6 +64,11 @@ export type NegativeInteger<TNumber extends number> = number extends TNumber
   : never;
 
 /**
+ * Represents a type which can never be undefined.
+ */
+export type NonIndefinable<T> = T extends undefined ? never : T;
+
+/**
  * Represents a type composed of the writable properties of an object.
  */
 export type NonReadonly<T> = {
@@ -84,11 +90,27 @@ export type Nullable<T> = T | null;
 export type Nullish<T> = T | null | undefined;
 
 /**
+ * Represents the type of the keys of an object.
+ */
+export type ObjectKey<TObject extends object> = keyof TObject;
+
+/**
+ * Represents a type which makes the given properties optional from the given object.
+ */
+export type Optional<TObject extends object, TKey extends keyof TObject> = Omit<
+  TObject,
+  TKey
+> &
+  Partial<Pick<TObject, TKey>>;
+
+/**
  * Represents a type which consists of the optional properties of a given object.
  */
-export type OptionalKey<T> = {
-  [K in keyof T]-?: {} extends { [P in K]: T[K] } ? K : never;
-}[keyof T];
+export type OptionalKey<TObject extends object> = {
+  [TKey in keyof TObject]-?: {} extends { [P in TKey]: TObject[TKey] }
+    ? TKey
+    : never;
+}[keyof TObject];
 
 /**
  * Represents a type composed of the required object properties.
@@ -117,6 +139,14 @@ export type PositiveInteger<TNumber extends number> = number extends TNumber
   : `${TNumber}` extends `-${string}` | `${string}.${string}`
   ? never
   : TNumber;
+
+/**
+ * Represents the type of the given object property.
+ */
+export type PropertyType<
+  TObject extends object,
+  TKey extends keyof TObject
+> = TObject[TKey];
 
 /**
  * Represents a type composed of the readonly keys of an object.

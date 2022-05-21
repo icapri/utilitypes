@@ -1,1 +1,1 @@
-export * from './utilitypes';
+export * from './utility-types';
