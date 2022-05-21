@@ -1,13 +1,43 @@
 /**
+ * Represents an abstract class type.
+ */
+export type AbstractClass<T = any> = Function & { prototype: T };
+
+/**
  * Represents the type of the array items.
  */
 export type ArrayItem<TArray extends readonly unknown[]> =
   TArray extends readonly (infer TItem)[] ? TItem : never;
 
 /**
+ * Represents the type of a class.
+ */
+export type Class<T = any> = AbstractClass<T> | InstantiableClass<T>;
+
+/**
  * Represents the type of the constructor of an object.
  */
-export type ConstructorType<T extends object = {}> = new (...args: any[]) => T;
+export type ConstructorType<T = any> = new (...args: any[]) => T;
+
+/**
+ * Represents the keys of a given object which are of type function.
+ *
+ * **Example:**
+ * ```typescript
+ * class Cube {
+ *   a: number = 5;
+ *   getVolume = () => 125;
+ * }
+ *
+ * const funcKey: FuncKey<Cube> = "getVolume"; // correct!
+ * const funcKey: FuncKey<Cube> = "a"; // error!
+ * ```
+ */
+export type FuncKey<TObject extends object> = {
+  [TKey in keyof TObject]-?: NonIndefinable<TObject[TKey]> extends Function
+    ? TKey
+    : never;
+}[keyof TObject];
 
 /**
  * Represents a type which checks for type equality.
@@ -17,6 +47,12 @@ type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
 >() => T extends Y ? 1 : 2
   ? A
   : B;
+
+/**
+ * @see ConstructorType
+ * Represents the type of the constructor of an object.
+ */
+export type InstantiableClass<T = any> = ConstructorType<T>;
 
 /**
  * Represents an integer.
@@ -35,6 +71,25 @@ export type Integer<TNumber extends number> = number extends TNumber
   : `${TNumber}` extends `${string}.${string}`
   ? never
   : TNumber;
+
+/**
+ * Represents the keys of the properties of a given object which are of a given
+ * value type.
+ *
+ * **Example**
+ * ```typescript
+ * class User {
+ *   name: string = 'John';
+ *   age: number = 24;
+ * }
+ *
+ * const x: KeysOfType<User, string> = 'name'; // correct!
+ * const y: KeysOfType<User, number> = 'name'; // error!
+ * ```
+ */
+export type KeysWithValueType<TObject, TValueType> = {
+  [TKey in keyof TObject]-?: TObject[TKey] extends TValueType ? TKey : never;
+}[keyof TObject];
 
 /**
  * Represents a type whose properties are mutable.
@@ -62,6 +117,26 @@ export type NegativeInteger<TNumber extends number> = number extends TNumber
   : `${TNumber}` extends `-${string}`
   ? TNumber
   : never;
+
+/**
+ * Represents the keys of the properties of the given object.
+ *
+ * **Example:**
+ * ```typescript
+ * class Cube {
+ *   a: number = 5;
+ *   getVolume = () => 125;
+ * }
+ *
+ * const nonFuncKey: NonFuncKey<Cube> = "a"; // correct!
+ * const nonFuncKey: NonFuncKey<Cube> = "getVolume"; // error!
+ * ```
+ */
+export type NonFuncKey<TObject extends object> = {
+  [TKey in keyof TObject]-?: NonIndefinable<TObject[TKey]> extends Function
+    ? never
+    : TKey;
+}[keyof TObject];
 
 /**
  * Represents a type which can never be undefined.
