@@ -1,0 +1,26 @@
+{
+  "name": "utilitypes",
+  "version": "1.0.0",
+  "description": "Supplementary TypeScript Utility-Types",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build" : "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i-kapri/utilitypes.git"
+  },
+  "keywords": ["TypeScript", "Types"],
+  "author": "I. Kapri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/i-kapri/utilitypes/issues"
+  },
+  "homepage": "https://github.com/i-kapri/utilitypes#readme",
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  },
+  "files": ["lib/**/*"]
+}
