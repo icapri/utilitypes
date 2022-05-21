@@ -124,6 +124,25 @@ export type NegativeInteger<TNumber extends number> = number extends TNumber
   : never;
 
 /**
+ * Represents a negative number.
+ *
+ * **Example:**
+ * ```typescript
+ * function f<N extends number>(x: NegativeNumber<N>) {
+ *   // ...
+ * }
+ *
+ * f(-1) // success!
+ * f(3.14) // error!
+ * ```
+ */
+export type NegativeNumber<TNumber extends number> = number extends TNumber
+  ? never
+  : `${TNumber}` extends `-${string}`
+  ? TNumber
+  : never;
+
+/**
  * Represents the keys of the properties of the given object.
  *
  * **Example:**
@@ -217,6 +236,25 @@ export type PlainObject<T> = { [id: string]: T };
 export type PositiveInteger<TNumber extends number> = number extends TNumber
   ? never
   : `${TNumber}` extends `-${string}` | `${string}.${string}`
+  ? never
+  : TNumber;
+
+/**
+ * Represents a positive number.
+ *
+ * **Example:**
+ * ```typescript
+ * function f<N extends number>(x: PositiveNumber<N>) {
+ *   // ...
+ * }
+ *
+ * f(-1) // error!
+ * f(3.14) // success!
+ * ```
+ */
+export type PositiveNumber<TNumber extends number> = number extends TNumber
+  ? never
+  : `${TNumber}` extends `-${string}`
   ? never
   : TNumber;
 
