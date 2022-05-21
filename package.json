@@ -1,11 +1,11 @@
 {
   "name": "@i-kapri/utility-types",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Supplementary TypeScript Utility-Types",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build" : "tsc",
+    "build": "tsc",
     "commitAndPush": "git add -A && git commit -m \"New changes\" && git push",
     "publish": "npm publish --access=public"
   },
@@ -13,7 +13,10 @@
     "type": "git",
     "url": "git+https://github.com/i-kapri/utilitypes.git"
   },
-  "keywords": ["TypeScript", "Types"],
+  "keywords": [
+    "TypeScript",
+    "Types"
+  ],
   "author": "I. Kapri",
   "license": "MIT",
   "bugs": {
@@ -23,5 +26,7 @@
   "devDependencies": {
     "typescript": "^4.6.4"
   },
-  "files": ["lib/**/*"]
+  "files": [
+    "lib/**/*"
+  ]
 }
