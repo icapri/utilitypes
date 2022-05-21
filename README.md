@@ -1,1 +1,3 @@
-# Utilitypes - Supplementary TypeScript Types
+# Utilitypes
+
+Provides supplementary TypeScript types
